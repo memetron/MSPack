@@ -1,0 +1,2 @@
+@tag mspack:onhit
+advancement revoke @s only mspack:hitlistener
