@@ -1,0 +1,49 @@
+@require mspack:items/spectralarrow/load
+
+define item lightning_arrow minecraft:carrot_on_a_stick#1 {
+    
+    default name {"text":"Lightning Arrow","color":"gold"}
+
+    default lore [
+        "Thot Ploice"
+    ]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+    on used function {
+        #Initializes arrow level to 0 on first use
+        unless entity @s[scores={MS_arrowlevel=isset}] scoreboard players set @s MS_arrowlevel 0
+        
+        scoreboard players set @s MS_arrowcost 5
+        scoreboard players operation @s MS_arrowcost -= @s MS_arrowlevel
+        
+        scoreboard players operation @s MS_arrowcost -= @s MS_arrowlevel
+        
+        scoreboard players operation @s MS_arrowcost > #1 MS_CONST        
+        
+        #Verifies caster has sufficient xp to cast
+        function mspack:utilities/experience/query
+        
+        scoreboard players operation @s MS_storage2 = @s MS_arrowcost
+        scoreboard players operation @s MS_storage2 -= @s MS_storage1
+        
+        if score @s MS_arrowcooldown matches 5.. if score @s MS_storage2 matches ..0 expand {
+            scoreboard players operation @s MS_arg1 = @s MS_arrowcost
+            function mspack:utilities/experience/removelevel
+            
+            #Summons arrow with undefined uuid at casters eyes
+            anchored eyes
+                positioned ^ ^ ^
+                anchored feet 
+                summon arrow ~ ~ ~ {OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:12b,Duration:1}]}
+            
+            tag @s add arrowcaster
+            as @e[type=arrow,sort=nearest,limit=1] function mspack:items/lightningarrow/addarrowattributes
+            tag @s remove arrowcaster
+            
+            scoreboard players set @s MS_arrowcooldown 0
+        }
+    }
+}
+
+give @s $lightning_arrow

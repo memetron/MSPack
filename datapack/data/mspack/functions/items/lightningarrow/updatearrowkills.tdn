@@ -1,0 +1,42 @@
+@tag mspack:onkill
+
+define item lightningarrowprestigetoken compass#2 {
+    default name {"text":"Lightning Arrow Prestige Token","color":"red"}
+    
+    default lore [{"text":"use to upgrade lightning arrow"},
+    {"text":"to a more powerful spell"}]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+}
+
+if entity @s[nbt={SelectedItem:{tag:{TridentCustomItem:-2144175695}}},scores={MS_arrowkills=..600}] expand {
+    scoreboard players add @s MS_arrowkills 1
+    if score @s MS_arrowkills matches 200.. if score @s MS_arrowlevel matches 0 tag @s add levelup
+    if score @s MS_arrowkills matches 300.. if score @s MS_arrowlevel matches 1 tag @s add levelup
+    if score @s MS_arrowkills matches 400.. if score @s MS_arrowlevel matches 2 tag @s add levelup
+    if score @s MS_arrowkills matches 500.. if score @s MS_arrowlevel matches 3 tag @s add levelup
+    if score @s MS_arrowkills matches 600.. if score @s MS_arrowlevel matches 4 tag @s add levelup
+    
+    if entity @s[tag=levelup] expand {
+        
+        if score @s MS_arrowlevel matches 0 tellraw @s {"text":"Lightning Arrow has leveled up to comfortable!","color":"red"}
+        
+        if score @s MS_arrowlevel matches 1 tellraw @s {"text":"Lightning Arrow has leveled up to adept!","color":"red"}
+        
+        if score @s MS_arrowlevel matches 2 tellraw @s {"text":"Lightning Arrow has leveled up to masterful!","color":"red"}
+        
+        if score @s MS_arrowlevel matches 3 tellraw @s {"text":"Lightning Arrow has leveled up to expert!","color":"red"}
+        
+        if score @s MS_arrowlevel matches 4 expand {
+            tellraw @s {"text":"You have fully mastered the Lightning arrow!","color":"red"}
+            give @s $spectralarrowprestigetoken
+        }
+        
+        scoreboard players add @s MS_arrowlevel 1
+        scoreboard players set @s MS_arrowkills 0
+        
+        tag @s remove levelup
+        
+    }
+}
