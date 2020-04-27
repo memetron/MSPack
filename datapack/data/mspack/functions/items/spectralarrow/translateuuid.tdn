@@ -1,0 +1,2 @@
+/data modify entity @s OwnerUUIDLeast set from entity @a[tag=arrowcaster,sort=nearest,limit=1] UUIDLeast
+/data modify entity @s OwnerUUIDMost set from entity @a[tag=arrowcaster,sort=nearest,limit=1] UUIDMost

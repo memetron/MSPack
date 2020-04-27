@@ -1,0 +1,1 @@
+store result score @s MS_storage1 run data get entity @s XpLevel

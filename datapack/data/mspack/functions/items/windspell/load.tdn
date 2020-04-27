@@ -1,0 +1,8 @@
+@tag load
+@priority 1
+
+define objective MS_windcooldown
+define objective MS_windlevel
+define objective MS_windcost
+
+define objective MS_windhits

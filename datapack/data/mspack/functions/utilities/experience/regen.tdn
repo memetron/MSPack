@@ -1,0 +1,12 @@
+@tag load
+
+as @a[tag = xpregenenabled] expand {
+    function mspack:utilities/experience/query
+    run scoreboard players operation @s MS_storage1 -= @s MS_ATR_xpcap
+    unless score @s MS_storage1 matches 0.. expand {
+        store result score @s MS_arg1 run scoreboard players get @s MS_ATR_xpregen
+        function mspack:utilities/experience/addlevel
+    }
+}
+
+schedule function mspack:utilities/experience/regen 2s

@@ -1,0 +1,16 @@
+define item manacapup minecraft:snowball#1{
+    default name {"text":"Mana Max Upgrade Token","color":"light_purple"}
+    default lore [{"text":"Consumable","color":"gold"},
+        "Increases the maximum value of mana regen",
+        "This tier can only increase it up to 20"
+    ]
+    on used function {
+        if score @s MS_ATR_xpcap matches ..20 expand {
+            scoreboard players add @s MS_ATR_xpcap 1
+            tellraw @s ["",{"text":"Maximum mana increased to ","color":"red"},{"score":{"name":"@s","objective":"MS_ATR_xpcap"},"color":"red"}]
+            kill @e[type=minecraft:snowball,sort=nearest,limit=1]
+        }
+    }
+}
+
+give @s[name=memestreak] $manacapup

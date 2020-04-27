@@ -1,0 +1,38 @@
+define item wind_spell minecraft:carrot_on_a_stick#2 {
+    
+    default name {"text":"Wind Gust","color":"gold"}
+
+    default lore [
+        "r/whoosh"
+    ]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+    on used function {
+        #Initializes arrow level to 0 on first use
+        unless entity @s[scores={MS_windlevel=isset}] scoreboard players set @s MS_windlevel 0
+        
+        scoreboard players set @s MS_windcost 10
+        scoreboard players operation @s MS_windcost -= @s MS_windlevel
+        set @s->MS_windcost > 1
+        
+        #Verifies caster has sufficient xp to cast
+        function mspack:utilities/experience/query
+        
+        scoreboard players operation @s MS_storage2 = @s MS_windcost
+        scoreboard players operation @s MS_storage2 -= @s MS_storage1
+        
+        if score @s MS_arrowcooldown matches 5.. if score @s MS_storage2 matches ..0 expand {
+            scoreboard players operation @s MS_arg1 = @s MS_windcost
+            function mspack:utilities/experience/removelevel
+            
+            tag @s add usedwindspell
+            as @e[type=!minecraft:player,sort=nearest,limit=10,distance=..5] function mspack:items/windspell/onhit
+            tag @s remove usedwindspell
+            
+            scoreboard players set @s MS_windcooldown 0
+        }
+    }
+}
+
+give @s $wind_spell

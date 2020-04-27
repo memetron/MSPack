@@ -1,0 +1,2 @@
+@tag onkill
+advancement revoke @s only mspack:killlistener

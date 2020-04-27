@@ -1,0 +1,26 @@
+@tag load
+@priority 1
+
+define objective MS_arg1
+define objective MS_arg2
+define objective MS_arg3
+define objective MS_storage1
+define objective MS_storage2
+
+define objective MS_vectorX
+define objective MS_vectorY
+define objective MS_vectorZ
+
+define objective MS_maxlightning
+define objective MS_lightingcd
+
+define objective MS_maxtpdist
+define objective MS_rodcooldown
+
+define objective MS_ATR_xpregen
+define objective MS_ATR_xpcap
+
+define objective MS_CONST
+
+scoreboard players set CONST5 MS_CONST 5
+say MS Utility Function Pack V0.2.2 loaded!

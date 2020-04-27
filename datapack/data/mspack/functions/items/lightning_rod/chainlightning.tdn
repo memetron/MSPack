@@ -1,0 +1,22 @@
+summon minecraft:lightning_bolt
+tag @s add hitbylightning
+as @e[type=#mspack:mob,tag=!hitbylightning,distance=..15,sort=nearest,limit=3] facing entity @s eyes expand {
+    scoreboard players set @s MS_maxlightning 60
+    
+    function raytrace {
+        set @s->MS_maxlightning -= 1
+        particle dust 0.4 0.8 1 1 ~ ~ ~ 0.1 0.1 0.1 0 5 
+
+        unless block ^ ^ ^0.25 minecraft:air
+            summon minecraft:lightning_bolt
+        
+        as @e[type=#mspack:mob,distance=..2,tag=!hitbylightning,sort=nearest,limit=2] at @s function mspack:items/lightning_rod/chainlightning
+        
+        unless score @s MS_maxlightning matches ..0
+            unless entity @e[type=#mspack:mob,distance=..2,tag=!hitbylightning]
+            positioned ^ ^ ^0.25
+            if block ~ ~ ~ minecraft:air
+            function /
+    }
+    
+}

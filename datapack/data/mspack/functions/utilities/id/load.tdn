@@ -1,0 +1,5 @@
+@tag load
+@priority 1
+
+scoreboard players reset * MS_id
+scoreboard players set index MS_id 0

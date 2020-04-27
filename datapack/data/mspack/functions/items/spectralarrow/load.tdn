@@ -1,0 +1,8 @@
+@tag load
+@priority 1
+
+define objective MS_arrowcooldown
+define objective MS_arrowlevel
+define objective MS_arrowcost
+
+define objective MS_arrowkills

@@ -1,0 +1,2 @@
+@tag tick
+execute as @a unless score @s MS_rodcooldown matches 20.. run scoreboard players add @s MS_rodcooldown 1

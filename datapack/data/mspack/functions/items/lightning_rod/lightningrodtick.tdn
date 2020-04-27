@@ -1,0 +1,2 @@
+@tag tick
+scoreboard players add @a MS_lightingcd 1

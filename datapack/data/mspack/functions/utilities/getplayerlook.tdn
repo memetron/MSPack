@@ -1,0 +1,19 @@
+
+summon minecraft:area_effect_cloud{Tags:["look_helper"]} ^ ^ ^20
+set @s->MS_vectorX = @s.Pos[0] *10
+set @s->MS_vectorY = @s.Pos[1] *10
+set @s->MS_vectorZ = @s.Pos[2] *10
+
+execute store result score 
+@e[type=area_effect_cloud,tag=look_helper,distance=19.8..20.2] MS_vectorX 
+run data get entity @e[type=minecraft:area_effect_cloud,tag=look_helper,limit=1,distance=19.8..20.2] Pos[0] 10
+execute store result score
+@e[type=area_effect_cloud,tag=look_helper,distance=19.8..20.2] MS_vectorY 
+run data get entity @e[type=minecraft:area_effect_cloud,tag=look_helper,limit=1,distance=19.8..20.2] Pos[1] 10
+execute store result score
+@e[type=area_effect_cloud,tag=look_helper,distance=19.8..20.2] MS_vectorZ 
+run data get entity @e[type=minecraft:area_effect_cloud,tag=look_helper,limit=1,distance=19.8..20.2] Pos[2] 10
+
+scoreboard players operation @s MS_vectorX -= @e[type=area_effect_cloud,tag=look_helper,limit=1,sort=nearest] MS_vectorX
+scoreboard players operation @s MS_vectorY -= @e[type=area_effect_cloud,tag=look_helper,limit=1,sort=nearest] MS_vectorY
+scoreboard players operation @s MS_vectorZ -= @e[type=area_effect_cloud,tag=look_helper,limit=1,sort=nearest] MS_vectorZ

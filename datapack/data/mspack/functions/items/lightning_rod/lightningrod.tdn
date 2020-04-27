@@ -1,0 +1,44 @@
+
+define item lightningrod minecraft:carrot_on_a_stick#11 {
+    
+    default name {"text":"Lightning rod","color":"gold"}
+
+    default lore [
+        "Chains lightning between foes"
+    ]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+    function raytrace {
+        set @s->MS_maxlightning -= 1
+        particle dust 0.4 0.8 1 1 ~ ~ ~ 0.1 0.1 0.1 0 5 
+
+        unless block ^ ^ ^0.25 minecraft:air
+            summon minecraft:lightning_bolt
+        
+        as @e[type=#mspack:mob,distance=..2,sort=nearest,limit=2] function mspack:items/lightning_rod/chainlightning
+
+        unless score @s MS_maxlightning matches ..0
+            unless entity @e[type=#mspack:mob,distance=..2]
+            positioned ^ ^ ^0.25
+            if block ~ ~ ~ minecraft:air
+            function /
+    }
+    
+    on used function {
+        if score @s MS_lightingcd matches 20.. expand {
+            set @s->MS_maxlightning = 128
+            anchored eyes
+                positioned ^ ^ ^
+                anchored feet 
+                function ${this.raytrace}
+            scoreboard players set @s MS_lightingcd 0
+        }
+        tag @e[tag=hitbylightning] remove hitbylightning
+    }
+}
+
+give @s $lightningrod
+define item lightningrod minecraft:carrot_on_a_stick {
+    
+}

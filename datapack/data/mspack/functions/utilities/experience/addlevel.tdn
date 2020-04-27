@@ -1,0 +1,5 @@
+if score @s MS_arg1 matches 1.. expand {
+    run experience add @s 1 levels
+    run scoreboard players remove @s MS_arg1 1
+    function mspack:utilities/experience/addlevel
+}

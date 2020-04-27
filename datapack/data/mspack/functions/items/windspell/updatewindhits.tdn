@@ -1,0 +1,36 @@
+@tag onkill
+
+define item spectralwindprestigetoken compass#1 {
+    default name {"text":"wind Gust Prestige Token","color":"red"}
+    
+    default lore [{"text":"use to upgrade wind gust"},
+    {"text":"to a more powerful spell"}]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+}
+
+    scoreboard players add @s MS_windhits 1
+    if score @s MS_windhits matches 50 if score @s MS_windlevel matches 0 tag @s add levelup
+    if score @s MS_windhits matches 100 if score @s MS_windlevel matches 1 tag @s add levelup
+    if score @s MS_windhits matches 200 if score @s MS_windlevel matches 2 tag @s add levelup
+    if score @s MS_windhits matches 500 if score @s MS_windlevel matches 3 tag @s add levelup
+    if score @s MS_windhits matches 750 if score @s MS_windlevel matches 4 tag @s add levelup
+    
+    if entity @s[tag=levelup] expand {
+        
+        if score @s MS_windlevel matches 0 tellraw @s {"text":"wind Gust has leveled up to comfortable!","color":"red"}
+        
+        if score @s MS_windlevel matches 1 tellraw @s {"text":"wind Gust has leveled up to adept!","color":"red"}
+        
+        if score @s MS_windlevel matches 2 tellraw @s {"text":"wind Gust has leveled up to masterful!","color":"red"}
+        
+        if score @s MS_windlevel matches 3 tellraw @s {"text":"wind Gust has leveled up to expert!","color":"red"}
+        
+        if score @s MS_windlevel matches 4 tellraw @s {"text":"You have fully mastered wind gust!","color":"red"}
+        
+        scoreboard players add @s MS_windlevel 1
+        scoreboard players set @s MS_windhits 0
+        
+        tag @s remove levelup
+        
+    }

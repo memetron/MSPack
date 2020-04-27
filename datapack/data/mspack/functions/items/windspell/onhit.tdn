@@ -1,0 +1,9 @@
+var caster = entity<@a[tag=usedwindspell,sort=nearest,limit=1]>
+
+as $caster function mspack:utilities/getplayerlook
+
+store result entity @s Motion[0] double -0.02 run scoreboard players get $caster MS_vectorX
+store result entity @s Motion[1] double -0.02 run scoreboard players get $caster MS_vectorY
+store result entity @s Motion[2] double -0.02 run scoreboard players get $caster MS_vectorZ
+
+as $caster function mspack:items/windspell/updatewindhits

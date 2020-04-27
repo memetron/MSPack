@@ -1,0 +1,11 @@
+@tag load
+@priority 3
+
+define objective MS_id
+
+as @a[sort=random,limit=1] unless score @s MS_id matches 0.. tag @s add genid
+as @a[tag=genid] store result score @s MS_id run scoreboard players get index MS_id
+as @a[tag=genid] scoreboard players add index MS_id 1
+tag @a[tag=genid] remove genid
+schedule function mspack:utilities/id/generateid 1s
+

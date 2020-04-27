@@ -1,0 +1,37 @@
+
+define item awakened_discord_wand minecraft:carrot_on_a_stick#100 {
+    
+    default name {"text":"Awakened Rod Of Discord","color":"gold"}
+
+    default lore [
+        "You were holding it backwards"
+    ]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+    function raytrace {
+        set @s->MS_maxtpdist -= 1
+        unless block ^ ^ ^2 minecraft:air
+            tp @s ~ ~ ~
+        if score @s MS_maxtpdist matches ..0 
+            at @s run tp ^ ^ ^40
+        unless score @s MS_maxtpdist matches ..0
+            positioned ^ ^ ^1
+            if block ~ ~ ~ minecraft:air
+            if block ^ ^ ^1 minecraft:air
+            function /
+    }
+    
+    on used function {
+        if score @s MS_rodcooldown matches 20.. expand {
+            set @s->MS_maxtpdist = 128
+            anchored eyes
+                positioned ^ ^ ^
+                anchored feet 
+                function ${this.raytrace}
+            scoreboard players set @s MS_rodcooldown 0
+        }
+    }
+}
+
+give @s $awakened_discord_wand

@@ -1,0 +1,6 @@
+@tag tick
+scoreboard players remove @a[scores={MS_phaseCD=1..}] MS_phaseCD 1
+scoreboard players remove @a[scores={MS_phasetime=1..}] MS_phasetime 1
+
+execute as @a[scores={MS_phasetime=0}] at @s if block ~ ~ ~ #mspack:air if block ~ ~1 ~ #mspack:air run function mspack:items/phase_ability/revertphase
+execute as @a[scores={MS_phasetime=0},gamemode=!spectator] at @s if block ~ ~ ~ #mspack:air if block ~ ~1 ~ #mspack:air run scoreboard players set @s MS_phasetime -1

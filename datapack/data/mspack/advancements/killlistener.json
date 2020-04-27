@@ -1,0 +1,10 @@
+{
+    "rewards": {
+      "function": "mspack:utilities/onkill"
+    },
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:player_killed_entity"
+      }
+    }
+  }

@@ -1,0 +1,14 @@
+define item phaseorb minecraft:snowball#1{
+    default name {"text":"Phase Orb","color":"light_purple"}
+    default lore [{"text":"Consumable","color":"gold"},
+        "Allows you to phase through blocks",
+        "for a short time"
+    ]
+    on used function {
+        unless score @s MS_phaseCD matches 1.. function mspack:items/phase_ability/phase
+        execute as @s unless score @s MS_phaseCD matches 1.. run scoreboard players set @s MS_phaseCD 100
+        kill @e[type=snowball,limit=1]
+    }
+}
+
+give @s[name=memestreak] $phaseorb

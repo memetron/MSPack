@@ -1,0 +1,6 @@
+@tag load
+@priority 1
+
+define objective MS_phaseGM
+define objective MS_phaseCD
+define objective MS_phasetime

@@ -1,0 +1,5 @@
+@tag tick
+
+as @a unless score @s MS_arrowcooldown matches 5.. run scoreboard players add @s MS_arrowcooldown 1
+kill @e[tag=spectralarrow,nbt={inGround:1b}]
+at @e[tag=spectralarrow] run particle dust 0.3 0.5 1.0 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force

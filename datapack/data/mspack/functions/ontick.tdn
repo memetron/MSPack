@@ -1,0 +1,2 @@
+@tag tick
+as @a at @s if block ~ ~ ~ minecraft:grass_path run effect give @s speed 1 1 true
