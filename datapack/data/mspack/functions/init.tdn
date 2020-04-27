@@ -1,6 +1,6 @@
 @tag load
 @priority 1
-
+#test comment
 define objective MS_arg1
 define objective MS_arg2
 define objective MS_arg3
@@ -24,3 +24,4 @@ define objective MS_CONST
 
 scoreboard players set CONST5 MS_CONST 5
 say MS Utility Function Pack V0.2.2 loaded!
+say Lucas Addition Test
