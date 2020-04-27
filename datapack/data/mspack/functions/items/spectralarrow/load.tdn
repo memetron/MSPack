@@ -1,3 +1,4 @@
+#Initializes scoreboards for arrow
 @tag load
 @priority 1
 
