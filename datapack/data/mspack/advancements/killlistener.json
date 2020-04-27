@@ -1,6 +1,6 @@
 {
     "rewards": {
-      "function": "mspack:utilities/onkill"
+      "function": "mspack:tags/run_onkill_tags"
     },
     "criteria": {
       "requirement": {

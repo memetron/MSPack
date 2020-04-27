@@ -1,2 +1,2 @@
-@tag onkill
+@tag mspack:onkill
 advancement revoke @s only mspack:killlistener

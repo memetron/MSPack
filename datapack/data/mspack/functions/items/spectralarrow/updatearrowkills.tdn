@@ -1,4 +1,4 @@
-@tag onkill
+@tag mspack:onkill
 
 define item spectralarrowprestigetoken compass#1 {
     default name {"text":"Spectral Arrow Prestige Token","color":"red"}

@@ -1,2 +1,0 @@
-function mspack:utilities/resetlisteners/resetkilllistener
-function mspack:items/spectralarrow/updatearrowkills
