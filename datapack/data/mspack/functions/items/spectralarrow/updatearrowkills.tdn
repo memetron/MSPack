@@ -10,13 +10,13 @@ define item spectralarrowprestigetoken compass#1 {
     
 }
 
-if entity @s[nbt={SelectedItem:{tag:{TridentCustomItem:811352457}}}] expand {
+if entity @s[nbt={SelectedItem:{tag:{TridentCustomItem:811352457}}},scores={MS_arrowkills=..150}] expand {
     scoreboard players add @s MS_arrowkills 1
-    if score @s MS_arrowkills matches 10 if score @s MS_arrowlevel matches 0 tag @s add levelup
-    if score @s MS_arrowkills matches 25 if score @s MS_arrowlevel matches 1 tag @s add levelup
-    if score @s MS_arrowkills matches 50 if score @s MS_arrowlevel matches 2 tag @s add levelup
-    if score @s MS_arrowkills matches 100 if score @s MS_arrowlevel matches 3 tag @s add levelup
-    if score @s MS_arrowkills matches 150 if score @s MS_arrowlevel matches 4 tag @s add levelup
+    if score @s MS_arrowkills matches 10.. if score @s MS_arrowlevel matches 0 tag @s add levelup
+    if score @s MS_arrowkills matches 25.. if score @s MS_arrowlevel matches 1 tag @s add levelup
+    if score @s MS_arrowkills matches 50.. if score @s MS_arrowlevel matches 2 tag @s add levelup
+    if score @s MS_arrowkills matches 100.. if score @s MS_arrowlevel matches 3 tag @s add levelup
+    if score @s MS_arrowkills matches 150.. if score @s MS_arrowlevel matches 4 tag @s add levelup
     
     if entity @s[tag=levelup] expand {
         

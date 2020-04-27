@@ -1,8 +1,11 @@
 @tag load
 @priority 1
+@require mspack:init
 
 define objective MS_arrowcooldown
 define objective MS_arrowlevel
 define objective MS_arrowcost
 
 define objective MS_arrowkills
+
+scoreboard players set #1 MS_CONST 1
