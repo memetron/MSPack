@@ -1,0 +1,8 @@
+@tag tick
+execute as @e[tag=collision_tracker,tag=hasmotion,nbt={Motion:[0.0,0.0,0.0]}] at @s run expand{
+   function mspack:items/exploding_arrow/explosion
+}
+execute at @e[tag=exploding_arrow] run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 0.1 0.1 0.1 1 10
+execute at @e[tag=exploding_arrow] run tp @e[tag=collision_tracker]
+execute as @a[scores={ex_arrow_cd=1..}] run scoreboard players remove @s ex_arrow_cd 1 
+execute as @a[scores={ex_arrow_cd=..-1}] run scoreboard players set @s ex_arrow_cd 0 

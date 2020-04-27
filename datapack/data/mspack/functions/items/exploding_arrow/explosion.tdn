@@ -1,0 +1,10 @@
+@tag tick
+as @e[nbt={ActiveEffects:[{Id:8b,Amplifier:5b}]}] at @s run expand {
+summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
+    execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s ex_arrow_lv
+}
+as @e[tag=exploding_arrow,nbt={inGround:1b}] at @s run expand {
+summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
+    execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s ex_arrow_lv
+kill @s
+}
