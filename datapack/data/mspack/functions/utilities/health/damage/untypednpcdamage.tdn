@@ -1,3 +1,7 @@
+#
+#Deals amount of damage from arg1 to a (non-player) entity
+#
+
 function mspack:utilities/health/misc/gethealth
 scoreboard players operation @s MS_storage1 -= @s MS_arg1
 if entity @s[scores={MS_storage1=..0}] run kill @s

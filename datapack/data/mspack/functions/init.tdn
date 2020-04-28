@@ -6,6 +6,7 @@ define objective MS_arg2
 define objective MS_arg3
 define objective MS_storage1
 define objective MS_storage2
+define objective MS_storage3
 
 define objective MS_vectorX
 define objective MS_vectorY
