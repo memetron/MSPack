@@ -1,6 +1,6 @@
 @require mspack:items/spectralarrow/load
 
-define item lightning_arrow minecraft:carrot_on_a_stick#1 {
+define item lightning_arrow minecraft:carrot_on_a_stick#3 {
     
     default name {"text":"Lightning Arrow","color":"gold"}
 

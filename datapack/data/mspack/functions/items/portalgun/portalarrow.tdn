@@ -10,6 +10,16 @@ define item portal_arrow minecraft:carrot_on_a_stick#1 {
     
     default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
     
+    function shootportalarrow {
+        #Summons arrow with undefined uuid at casters eyes
+        anchored eyes positioned ^ ^ ^ anchored feet 
+            summon arrow ~ ~ ~ {damage:1d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:19b,Duration:2}]}
+        
+        tag @s add arrowcaster
+        as @e[type=arrow,sort=nearest,limit=1] function mspack:items/portalgun/addarrowattributes
+        tag @s remove arrowcaster
+    }
+    
     on used function {
         #Verifies caster has sufficient xp to cast
         function mspack:utilities/experience/query
@@ -18,15 +28,8 @@ define item portal_arrow minecraft:carrot_on_a_stick#1 {
             set @s->MS_arg1 = 5
             function mspack:utilities/experience/removelevel
             
-            #Summons arrow with undefined uuid at casters eyes
-            anchored eyes
-                positioned ^ ^ ^
-                anchored feet 
-                summon arrow ~ ~ ~ {damage:1d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:19b,Duration:2}]}
-            
-            tag @s add arrowcaster
-            as @e[type=arrow,sort=nearest,limit=1] function mspack:items/portalgun/addarrowattributes
-            tag @s remove arrowcaster
+            unless entity @s[predicate=mspack:sneaking] function ${this.shootportalarrow}
+            if entity @s[predicate=mspack:sneaking] function mspack:items/portalgun/placeexit
             
             scoreboard players set @s MS_arrowcooldown 0
         }
