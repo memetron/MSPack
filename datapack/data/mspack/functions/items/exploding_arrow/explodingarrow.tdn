@@ -8,6 +8,8 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
     default nbt {Enchantments:[{}]}
 
     on used function {
+        unless entity @s[scores={MS_ex_arrow_lv = isset}] run scoreboard players set @s MS_ex_arrow_lv 0
+        unless entity @s[scores={MS_ex_arrow_cd = isset}] run scoreboard players set @s MS_ex_arrow_cd 0
         at @s if score @s MS_ex_arrow_cd matches 0 run expand {
             
             #summon arrow
