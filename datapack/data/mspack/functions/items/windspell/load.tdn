@@ -4,5 +4,5 @@
 define objective MS_windcooldown
 define objective MS_windlevel
 define objective MS_windcost
-
+define objective MS_lifetime
 define objective MS_windhits

@@ -23,11 +23,11 @@ define item wind_spell minecraft:carrot_on_a_stick#5 {
         scoreboard players operation @s MS_storage2 -= @s MS_storage1
         
         if score @s MS_arrowcooldown matches 0 if score @s MS_storage2 matches ..0 expand {
-            say test
             scoreboard players operation @s MS_arg1 = @s MS_windcost
             function mspack:utilities/experience/removelevel
             
             tag @s add usedwindspell
+            summon minecraft:armor_stand ~ ~ ~ {Invisible:1b,Tags:["wind_particle"]}
             as @e[type=!minecraft:player,sort=nearest,limit=10,distance=..5] function mspack:items/windspell/onhit
             tag @s remove usedwindspell
             

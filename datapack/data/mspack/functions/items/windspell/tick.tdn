@@ -1,0 +1,6 @@
+@tag tick
+@require mspack:items/windspell/load
+
+as @e[tag=wind_particle] at @s particle dust 1 1 1 1 ~ ~ ~ 1.5 1.5 1.5 0 200 normal
+kill @e[type=minecraft:armor_stand,tag=wind_particle,scores={MS_lifetime=5..}]
+scoreboard players add @e[type=minecraft:armor_stand,tag=wind_particle] MS_lifetime 1

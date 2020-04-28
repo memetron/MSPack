@@ -30,7 +30,7 @@ define item lightning_arrow minecraft:carrot_on_a_stick#3 {
             anchored eyes
                 positioned ^ ^ ^
                 anchored feet 
-                summon arrow ~ ~ ~ {damage:0.5,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:12b,Duration:1}]}
+                summon arrow ~ ~ ~ {damage:0.5,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:12b,Duration:2}]}
             
             tag @s add arrowcaster
             as @e[type=arrow,sort=nearest,limit=1] function mspack:items/lightningarrow/addarrowattributes

@@ -20,6 +20,11 @@ define item portal_arrow minecraft:carrot_on_a_stick#4 {
         tag @s remove arrowcaster
     }
     
+    function placeexit {
+        kill @e[tag=portal_exit]
+        summon minecraft:armor_stand ~ ~ ~ {NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["portal_exit"]}
+    }
+    
     on used function {
         #Verifies caster has sufficient xp to cast
         function mspack:utilities/experience/query
@@ -29,7 +34,7 @@ define item portal_arrow minecraft:carrot_on_a_stick#4 {
             function mspack:utilities/experience/removelevel
             
             unless entity @s[predicate=mspack:sneaking] function ${this.shootportalarrow}
-            if entity @s[predicate=mspack:sneaking] function mspack:items/portalgun/placeexit
+            if entity @s[predicate=mspack:sneaking] function ${this.placeexit}
             
             scoreboard players set @s MS_arrowcooldown 10
         }

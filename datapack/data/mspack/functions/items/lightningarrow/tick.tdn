@@ -4,7 +4,8 @@ var lightningarrow = entity<@e[tag=lightningarrow]>
 as $lightningarrow[nbt={inGround:1b}] at @s function mspack:items/lightningarrow/summonlightning
 kill  $lightningarrow[nbt={inGround:1b}]
 
-at $lightningarrow run particle dust 1.0 1.0 0.5 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
+at $lightningarrow run particle dust 1.0 1.0 0 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
+at $lightningarrow run particle dust 0 1 1 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
 as @e[nbt={ActiveEffects:[{Id:4b,Amplifier:12b}]}] expand {
     function mspack:items/lightningarrow/summonlightning}
 
