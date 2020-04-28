@@ -1,4 +1,4 @@
-define item wind_spell minecraft:carrot_on_a_stick#2 {
+define item wind_spell minecraft:carrot_on_a_stick#5 {
     
     default name {"text":"Wind Gust","color":"gold"}
 

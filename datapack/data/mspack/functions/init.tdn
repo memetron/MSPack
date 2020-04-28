@@ -28,4 +28,4 @@ define objective MS_ex_arrow_lv
 
 scoreboard players set #5 MS_CONST 5
 scoreboard players set CONST5 MS_CONST 5
-say MS Utility Function Pack V0.2.2 loaded!
+say MS Utility Function Pack V0.3.0 loaded!

@@ -1,6 +1,6 @@
 @require mspack:items/spectralarrow/load
 
-define item portal_arrow minecraft:carrot_on_a_stick#1 {
+define item portal_arrow minecraft:carrot_on_a_stick#4 {
     
     default name {"text":"Portal Arrow","color":"gold"}
 
