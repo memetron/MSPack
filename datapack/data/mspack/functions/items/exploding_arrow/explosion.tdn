@@ -11,3 +11,13 @@ as @e[tag=exploding_arrow,nbt={inGround:1b}] at @s run expand {
     execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s MS_ex_arrow_lv
 kill @s
 }
+as @e[tag=exploding_arrow] at @s if entity @e[type=minecraft:wither,distance=..4] run expand {
+    summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
+    execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s MS_ex_arrow_lv
+kill @s
+}
+as @e[tag=exploding_arrow] at @s if entity @e[type=minecraft:ender_dragon,distance=..10] run expand {
+    summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
+    execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s MS_ex_arrow_lv
+kill @s
+}
