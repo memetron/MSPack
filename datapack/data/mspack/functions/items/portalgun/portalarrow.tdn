@@ -24,14 +24,14 @@ define item portal_arrow minecraft:carrot_on_a_stick#1 {
         #Verifies caster has sufficient xp to cast
         function mspack:utilities/experience/query
         
-        if score @s MS_arrowcooldown matches 5.. if score @s MS_storage1 matches 5.. expand {
+        if score @s MS_arrowcooldown matches 0 if score @s MS_storage1 matches 5.. expand {
             set @s->MS_arg1 = 5
             function mspack:utilities/experience/removelevel
             
             unless entity @s[predicate=mspack:sneaking] function ${this.shootportalarrow}
             if entity @s[predicate=mspack:sneaking] function mspack:items/portalgun/placeexit
             
-            scoreboard players set @s MS_arrowcooldown 0
+            scoreboard players set @s MS_arrowcooldown 10
         }
     }
 }
