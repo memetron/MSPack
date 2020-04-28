@@ -5,13 +5,30 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
         "Kablamers"
     ]
 
-    default nbt {Enchantments:[{}]}
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
 
     on used function {
+        
+        
         unless entity @s[scores={MS_ex_arrow_lv = isset}] run scoreboard players set @s MS_ex_arrow_lv 0
         unless entity @s[scores={MS_ex_arrow_cd = isset}] run scoreboard players set @s MS_ex_arrow_cd 0
-        at @s if score @s MS_ex_arrow_cd matches 0 run expand {
-            
+        scoreboard players set @s MS_arrowcost 10
+        
+        scoreboard players operation @s MS_arrowcost -= @s MS_ex_arrow_lv
+        
+        scoreboard players operation @s MS_arrowcost > #5 MS_CONST        
+        
+        #Verifies caster has sufficient xp to cast
+        function mspack:utilities/experience/query
+        
+        scoreboard players operation @s MS_storage3 = @s MS_arrowcost
+        scoreboard players operation @s MS_storage3 -= @s MS_storage1
+        
+        if score @s MS_ex_arrow_cd matches 0 if score @s MS_storage3 matches ..0 at @s expand {       
+             
+            scoreboard players operation @s MS_arg1 = @s MS_arrowcost
+            function mspack:utilities/experience/removelevel
+                
             #summon arrow
             if score @s MS_ex_arrow_lv matches 0 expand{
                 execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
@@ -36,15 +53,17 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
            
             #store velocity
             function mspack:utilities/getplayerlook
-            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[0] double -0.03 run scoreboard players get @s MS_vectorX
-            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[1] double -0.03 run scoreboard players get @s MS_vectorY
-            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[2] double -0.03 run scoreboard players get @s MS_vectorZ
+            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[0] double -0.015 run scoreboard players get @s MS_vectorX
+            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[1] double -0.015 run scoreboard players get @s MS_vectorY
+            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[2] double -0.015 run scoreboard players get @s MS_vectorZ
             tag @e[tag=get_arrow_motion] remove get_arrow_motion
             
             #get power
             execute store result score @e[tag=exploding_arrow,sort=nearest,limit=1] MS_ex_arrow_lv run scoreboard players get @s MS_ex_arrow_lv
             scoreboard players add @e[tag=exploding_arrow,sort=nearest,limit=1] MS_ex_arrow_lv 1
+            
             #cooldown
+            
             execute store result storage minecraft:explosionarrowcd ExplosionCooldown int 18 run scoreboard players get @s MS_ex_arrow_lv
             execute store result score @s MS_storage1 run data get storage minecraft:explosionarrowcd ExplosionCooldown 1
             scoreboard players set @s MS_storage2 100

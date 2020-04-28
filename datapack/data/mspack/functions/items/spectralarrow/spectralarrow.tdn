@@ -17,7 +17,6 @@ define item spectral_arrow minecraft:carrot_on_a_stick#1 {
         scoreboard players set @s MS_arrowcost 5
         scoreboard players operation @s MS_arrowcost -= @s MS_arrowlevel
         
-        scoreboard players operation @s MS_arrowcost -= @s MS_arrowlevel
         
         scoreboard players operation @s MS_arrowcost > #1 MS_CONST        
         
