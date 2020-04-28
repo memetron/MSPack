@@ -1,0 +1,4 @@
+scoreboard players remove @s MS_ex_arrow_lv 1
+execute at @s run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 2 2 2 5 40 force
+execute at @s run particle minecraft:dust 0 0 0 1 ~ ~ ~ 2 2 2 5 20 force
+execute if score @s MS_ex_arrow_lv matches 0.. run function mspack:items/exploding_arrow/particlerecursion
