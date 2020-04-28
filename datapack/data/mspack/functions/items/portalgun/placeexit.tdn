@@ -1,0 +1,2 @@
+kill @e[tag=portal_exit]
+summon minecraft:armor_stand ~ ~ ~ {NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["portal_exit"]}
