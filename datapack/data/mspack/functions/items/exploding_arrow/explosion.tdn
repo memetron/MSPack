@@ -2,6 +2,7 @@
 
 as @e[nbt={ActiveEffects:[{Id:8b,Amplifier:5b}]}] at @s run expand {
     execute at @s run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 2 2 2 5 1000 force
+    execute at @s run particle minecraft:dust 0 0 0 1 ~ ~ ~ 2 2 2 5 500 force
     summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
     execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run data get entity @s ActiveEffects[0].Duration
     effect clear @s
@@ -9,18 +10,21 @@ as @e[nbt={ActiveEffects:[{Id:8b,Amplifier:5b}]}] at @s run expand {
 
 as @e[tag=exploding_arrow,nbt={inGround:1b}] at @s run expand {
     execute at @s run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 2 2 2 5 1000 force
+    execute at @s run particle minecraft:dust 0 0 0 1 ~ ~ ~ 2 2 2 5 500 force
     summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
     execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s MS_ex_arrow_lv
 kill @s
 }
 as @e[tag=exploding_arrow] at @s if entity @e[type=minecraft:wither,distance=..4] run expand {
     execute at @s run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 2 2 2 5 1000 force
+    execute at @s run particle minecraft:dust 0 0 0 1 ~ ~ ~ 2 2 2 5 500 force
     summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
     execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s MS_ex_arrow_lv
 kill @s
 }
 as @e[tag=exploding_arrow] at @s if entity @e[type=minecraft:ender_dragon,distance=..10] run expand {
     execute at @s run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 2 2 2 5 1000 force
+    execute at @s run particle minecraft:dust 0 0 0 1 ~ ~ ~ 2 2 2 5 500 force
     summon creeper ~ ~ ~ {Invulnerable:1b,ignited:1b,Fuse:0s,Tags:["getpower"]}
     execute store result entity @e[tag=getpower,sort=nearest,limit=1] ExplosionRadius byte 1 run scoreboard players get @s MS_ex_arrow_lv
 kill @s

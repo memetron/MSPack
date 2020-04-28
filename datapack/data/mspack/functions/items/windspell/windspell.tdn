@@ -22,7 +22,8 @@ define item wind_spell minecraft:carrot_on_a_stick#5 {
         scoreboard players operation @s MS_storage2 = @s MS_windcost
         scoreboard players operation @s MS_storage2 -= @s MS_storage1
         
-        if score @s MS_arrowcooldown matches 5.. if score @s MS_storage2 matches ..0 expand {
+        if score @s MS_arrowcooldown matches 0 if score @s MS_storage2 matches ..0 expand {
+            say test
             scoreboard players operation @s MS_arg1 = @s MS_windcost
             function mspack:utilities/experience/removelevel
             
@@ -30,7 +31,7 @@ define item wind_spell minecraft:carrot_on_a_stick#5 {
             as @e[type=!minecraft:player,sort=nearest,limit=10,distance=..5] function mspack:items/windspell/onhit
             tag @s remove usedwindspell
             
-            scoreboard players set @s MS_windcooldown 0
+            scoreboard players set @s MS_arrowcooldown 10
         }
     }
 }
