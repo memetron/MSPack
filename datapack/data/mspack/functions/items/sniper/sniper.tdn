@@ -1,0 +1,46 @@
+
+define objective shoot_dist
+
+define item sniper_rifle minecraft:carrot_on_a_stick#91 {
+    
+    default name {"text":"Sniper Rifle","italic":false}
+    
+    default lore [
+        
+        [
+            "I'm gonna turn ya into colored rain!"
+        ]
+    ]
+    
+    
+    function raytrace {
+        scoreboard players remove @s shoot_dist 1
+        execute as @e[tag=!shoot_temp,dx=0] positioned ~-0.99 ~-0.99 ~-0.99 if entity @s[dx=0] run tag @s add shot_temp
+        
+        particle minecraft:mycelium ~ ~ ~ 0 0 0 0 1 force @a
+        execute if score @s shoot_dist matches 0.. if block ~ ~ ~ minecraft:air unless entity @e[tag=shot_temp,dx=0,dy=0,dz=0] positioned ^ ^ ^0.5 run function /
+        
+        
+        execute if entity @e[tag=shot_temp,dx=0,dy=0,dz=0] at @s run playsound minecraft:entity.arrow.hit_player player @s ~ ~ ~
+        
+        execute as @e[tag=shot_temp,dx=0,dy=0,dz=0] run effect give @s glowing 1 1 true
+        execute as @e[tag=shot_temp,dx=0,dy=0,dz=0] run tag @s remove shot_temp
+        
+        
+    }
+
+    on used function {
+        set @s->shoot_dist = 256
+        tag @s add shoot_temp
+        anchored eyes
+            positioned ^ ^ ^
+            anchored feet
+            function ${this.raytrace}
+        tag @s remove shoot_temp
+    }
+
+    
+}
+
+
+give @s $sniper_rifle
