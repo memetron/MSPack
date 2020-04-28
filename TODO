@@ -1,8 +1,4 @@
 Textures:
--Portal gun textures (portal arrow and portal)
--Wind gust texture
--lightning arrow upgrade token
--Wind gust upgrade token? (currently not ingame)
 -Levitation arrow? (kinda a joke item)
 
 Fixes:
@@ -12,3 +8,10 @@ Additions:
 
 Balance issues:
 -levitation arrow is dumb
+
+
+Done:
+-Portal gun textures (portal arrow)
+-lightning arrow upgrade token
+-Wind gust texture
+-Wind gust upgrade token? (currently not ingame)
