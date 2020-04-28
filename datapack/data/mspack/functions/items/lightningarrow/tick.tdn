@@ -1,11 +1,11 @@
 @tag tick
 var lightningarrow = entity<@e[tag=lightningarrow]>
+var lightningHelper = entity<@e[type=minecraft:area_effect_cloud,tag=lightning_helper]>
 
-as $lightningarrow[nbt={inGround:1b}] at @s function mspack:items/lightningarrow/summonlightning
-kill  $lightningarrow[nbt={inGround:1b}]
+kill $lightningarrow[nbt={inGround:1b}]
 
 at $lightningarrow run particle dust 1.0 1.0 0 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
 at $lightningarrow run particle dust 0 1 1 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
-as @e[nbt={ActiveEffects:[{Id:4b,Amplifier:12b}]}] expand {
-    function mspack:items/lightningarrow/summonlightning}
 
+as $lightningHelper at @s unless entity $lightningarrow[distance=..2] function mspack:items/lightningarrow/summonlightning
+as $lightningHelper at @s unless entity $lightningarrow[distance=..2] run kill @s

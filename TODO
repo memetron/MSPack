@@ -5,12 +5,20 @@ Fixes:
 -Allow multiple people to place portals at same time
 
 Additions:
+-Healing item?
+-Mana regen upgrade
+-Other attributes
+
+Changes
+-Migrate lighting arrow to untypeddamage
 
 Balance issues:
 -levitation arrow is dumb
 
 
 Done:
+-Upgrade particles for projectile items
+-Add particles for wind spell
 -Portal gun textures (portal arrow)
 -lightning arrow upgrade token
 -Wind gust texture
