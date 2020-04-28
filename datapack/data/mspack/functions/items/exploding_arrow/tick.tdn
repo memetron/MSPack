@@ -1,4 +1,4 @@
 @tag tick
 execute at @e[tag=exploding_arrow] run particle minecraft:dust 1 0.2 0 1 ~ ~ ~ 0.1 0.1 0.1 1 10
-execute as @a[scores={ex_arrow_cd=1..}] run scoreboard players remove @s ex_arrow_cd 1 
-execute as @a[scores={ex_arrow_cd=..-1}] run scoreboard players set @s ex_arrow_cd 0 
+execute as @a[scores={MS_ex_arrow_cd=1..}] run scoreboard players remove @s MS_ex_arrow_cd 1 
+execute as @a[scores={MS_ex_arrow_cd=..-1}] run scoreboard players set @s MS_ex_arrow_cd 0 

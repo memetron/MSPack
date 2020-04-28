@@ -8,30 +8,49 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
     default nbt {Enchantments:[{}]}
 
     on used function {
-        at @s if score @s ex_arrow_cd matches 0 run expand {
-            execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
-                CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:1,ShowParticles:0b},{Id:10b,Amplifier:5b,Duration:1,ShowParticles:0b}]} ^ ^ ^0.5
+        at @s if score @s MS_ex_arrow_cd matches 0 run expand {
             
+            #summon arrow
+            if score @s MS_ex_arrow_lv matches 0 expand{
+                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
+                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:1,ShowParticles:0b}]} ^ ^ ^0.5
+            }
+            if score @s MS_ex_arrow_lv matches 1 expand{ 
+                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
+                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:2,ShowParticles:0b}]} ^ ^ ^0.5
+            }
+            if score @s MS_ex_arrow_lv matches 2 expand{
+                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
+                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:3,ShowParticles:0b}]} ^ ^ ^0.5
+            }
+            if score @s MS_ex_arrow_lv matches 3 expand{ 
+                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
+                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:4,ShowParticles:0b}]} ^ ^ ^0.5
+            }
+            if score @s MS_ex_arrow_lv matches 4 expand{ 
+                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
+                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:5,ShowParticles:0b}]} ^ ^ ^0.5
+            }
+           
             #store velocity
             function mspack:utilities/getplayerlook
-            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[0] double -0.01 run scoreboard players get @s MS_vectorX
-            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[1] double -0.01 run scoreboard players get @s MS_vectorY
-            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[2] double -0.01 run scoreboard players get @s MS_vectorZ
+            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[0] double -0.03 run scoreboard players get @s MS_vectorX
+            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[1] double -0.03 run scoreboard players get @s MS_vectorY
+            execute store result entity @e[tag=get_arrow_motion,sort=nearest,limit=1]  Motion[2] double -0.03 run scoreboard players get @s MS_vectorZ
             tag @e[tag=get_arrow_motion] remove get_arrow_motion
             
             #get power
-            execute store result score @e[tag=exploding_arrow,sort=nearest,limit=1] ex_arrow_lv run scoreboard players get @s ex_arrow_lv
-            scoreboard players add @e[tag=exploding_arrow,sort=nearest,limit=1] ex_arrow_lv 1
-   
+            execute store result score @e[tag=exploding_arrow,sort=nearest,limit=1] MS_ex_arrow_lv run scoreboard players get @s MS_ex_arrow_lv
+            scoreboard players add @e[tag=exploding_arrow,sort=nearest,limit=1] MS_ex_arrow_lv 1
             #cooldown
-            execute store result storage minecraft:explosionarrowcd ExplosionCooldown int 18 run scoreboard players get @s ex_arrow_lv
+            execute store result storage minecraft:explosionarrowcd ExplosionCooldown int 18 run scoreboard players get @s MS_ex_arrow_lv
             execute store result score @s MS_storage1 run data get storage minecraft:explosionarrowcd ExplosionCooldown 1
             scoreboard players set @s MS_storage2 100
             scoreboard players operation @s MS_storage2 -= @s MS_storage1
-            execute store result score @s ex_arrow_cd run scoreboard players get @s MS_storage2
+            execute store result score @s MS_ex_arrow_cd run scoreboard players get @s MS_storage2
             
             tag @s add arrowcaster
-            as @e[type=arrow,sort=nearest,limit=1] function mspack:items/spectralarrow/translateuuid
+            as @e[type=arrow,tag=exploding_arrow,sort=nearest,limit=1] function mspack:items/spectralarrow/translateuuid
             tag @s remove arrowcaster
         
         
