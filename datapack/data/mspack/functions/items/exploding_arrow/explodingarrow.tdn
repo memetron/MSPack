@@ -30,26 +30,8 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
             function mspack:utilities/experience/removelevel
                 
             #summon arrow
-            if score @s MS_ex_arrow_lv matches 0 expand{
                 execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
-                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:1,ShowParticles:0b}]} ^ ^ ^0.5
-            }
-            if score @s MS_ex_arrow_lv matches 1 expand{ 
-                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
-                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:2,ShowParticles:0b}]} ^ ^ ^0.5
-            }
-            if score @s MS_ex_arrow_lv matches 2 expand{
-                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
-                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:3,ShowParticles:0b}]} ^ ^ ^0.5
-            }
-            if score @s MS_ex_arrow_lv matches 3 expand{ 
-                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
-                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:4,ShowParticles:0b}]} ^ ^ ^0.5
-            }
-            if score @s MS_ex_arrow_lv matches 4 expand{ 
-                execute positioned ~ ~1.6 ~ run summon arrow{damage:0.0,Tags:["exploding_arrow","get_arrow_motion"],
-                    CustomPotionEffects:[{Id:8b,Amplifier:5b,Duration:5,ShowParticles:0b}]} ^ ^ ^0.5
-            }
+                    Passengers:[{id:"minecraft:area_effect_cloud",Duration:1200,WaitTime:1200,Tags:[ex_collisiondetect]}]} ^ ^ ^0.5
            
             #store velocity
             function mspack:utilities/getplayerlook
@@ -59,9 +41,9 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
             tag @e[tag=get_arrow_motion] remove get_arrow_motion
             
             #get power
-            execute store result score @e[tag=exploding_arrow,sort=nearest,limit=1] MS_ex_arrow_lv run scoreboard players get @s MS_ex_arrow_lv
-            scoreboard players add @e[tag=exploding_arrow,sort=nearest,limit=1] MS_ex_arrow_lv 1
-            
+            execute store result score @e[tag=ex_collisiondetect,sort=nearest,limit=1] MS_ex_arrow_lv run scoreboard players get @s MS_ex_arrow_lv
+            scoreboard players add @e[tag=ex_collisiondetect,sort=nearest,limit=1] MS_ex_arrow_lv 1
+            if score @e[tag=ex_collisiondetect,sort=nearest,limit=1] MS_ex_arrow_lv matches 1 run scoreboard players add @e[tag=ex_collisiondetect,sort=nearest,limit=1] MS_ex_arrow_lv 1
             #cooldown
             
             execute store result storage minecraft:explosionarrowcd ExplosionCooldown int 18 run scoreboard players get @s MS_ex_arrow_lv
