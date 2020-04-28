@@ -59,4 +59,4 @@ default name {"text":"Exploding Arrow","color":"Gold","italic":false}
         }   
     }
 }
-give @a $exploding_arrow
+give @s $exploding_arrow
