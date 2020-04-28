@@ -1,0 +1,9 @@
+@tag tick
+
+var exit = entity<@e[tag=portal_exit,limit=1]>
+at $exit particle dust 1 0.5 0 1 ~ ~ ~ 1 0 1 0 100
+as @e[nbt={ActiveEffects:[{Id:4b,Amplifier:19b,Duration:1}]}] at @s expand {
+    playsound minecraft:entity.enderman.teleport neutral @a ~ ~ ~ 1 1 1
+    particle dust 0 0 1 1 ~ ~ ~ 0.7 0.7 0.7 0 500 normal
+    tp @s $exit
+}

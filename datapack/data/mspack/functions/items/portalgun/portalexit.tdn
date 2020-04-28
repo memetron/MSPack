@@ -1,0 +1,19 @@
+@require mspack:items/spectralarrow/load
+
+define item portal_exit minecraft:carrot_on_a_stick {
+    
+    default name {"text":"Portal Exit","color":"gold"}
+
+    default lore [
+        "Lmoazers my doggies"
+    ]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+    on used function {
+        kill @e[tag=portal_exit]
+        summon minecraft:armor_stand ~ ~ ~ {NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["portal_exit"]}
+    }
+}
+
+give @s $portal_exit

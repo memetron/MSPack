@@ -1,0 +1,19 @@
+#
+#Deals amount of damage from arg1 to a (non-player) entity and attributes the damage to player with id given in arg2
+#
+
+store result storage mspack:storage DamagedMobID byte 1 run scoreboard players get @s MS_arg2
+store result score @a MS_storage1 run data get storage mspack:storage DamagedMobID
+as @a run scoreboard players operation @s MS_storage1 -= @s MS_id
+var damagesource = entity<@a[scores={MS_storage1=0}]>
+
+function mspack:utilities/health/misc/gethealth
+scoreboard players operation @s MS_storage1 -= @s MS_arg1
+
+if entity @s[scores={MS_storage1=..0}] expand {
+    as $damagesource run function #mspack:onkill
+    run kill @s
+}
+
+as $damagesource run function #mspack:onhit
+store result entity @s Health float 0.1 run scoreboard players get @s MS_storage1

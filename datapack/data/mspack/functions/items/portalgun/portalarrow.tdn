@@ -1,0 +1,36 @@
+@require mspack:items/spectralarrow/load
+
+define item portal_arrow minecraft:carrot_on_a_stick#1 {
+    
+    default name {"text":"Portal Arrow","color":"gold"}
+
+    default lore [
+        "Thot Ploice"
+    ]
+    
+    default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
+    
+    on used function {
+        #Verifies caster has sufficient xp to cast
+        function mspack:utilities/experience/query
+        
+        if score @s MS_arrowcooldown matches 5.. if score @s MS_storage1 matches 5.. expand {
+            set @s->MS_arg1 = 5
+            function mspack:utilities/experience/removelevel
+            
+            #Summons arrow with undefined uuid at casters eyes
+            anchored eyes
+                positioned ^ ^ ^
+                anchored feet 
+                summon arrow ~ ~ ~ {damage:1d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:19b,Duration:2}]}
+            
+            tag @s add arrowcaster
+            as @e[type=arrow,sort=nearest,limit=1] function mspack:items/portalgun/addarrowattributes
+            tag @s remove arrowcaster
+            
+            scoreboard players set @s MS_arrowcooldown 0
+        }
+    }
+}
+
+give @s $portal_arrow
