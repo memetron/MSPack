@@ -31,7 +31,7 @@ define item portal_arrow minecraft:carrot_on_a_stick#4 {
         store result storage mspack:storage portalID byte 1 run scoreboard players get @s MS_id
         as @e[tag=portal_exit] function ${this.killmatchingidportals}
         
-        summon minecraft:armor_stand ~ ~ ~ {NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["portal_exit"]}
+        summon minecraft:armor_stand ~ ~ ~ {NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["portal_exit"],Marker:1b}
         store result score @e[type=minecraft:armor_stand,tag=portal_exit,sort=nearest,limit=1] MS_id run scoreboard players get @p MS_id
     }
     
