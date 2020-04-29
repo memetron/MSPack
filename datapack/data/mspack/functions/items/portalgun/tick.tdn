@@ -6,9 +6,8 @@ var portalhelper = entity<@e[type=minecraft:area_effect_cloud,tag=portalhelper]>
 at $exit particle dust 1 0.5 0 1 ~ ~ ~ 1 0 1 0 100
 
 at $portalarrow particle dust 0.2 0.5 1 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
-as $portalarrow[nbt={inGround:1b}] expand {
-    tag $portalhelper[sort=nearest,limit=1] add groundedArrow
-    kill @s
-}
+as $portalarrow[nbt={inGround:1b}] tag $portalhelper[sort=nearest,limit=1] add groundedArrow
 
-as $portalhelper at @s unless entity $portalarrow[distance=..2] function mspack:items/portalgun/teleport
+as $portalhelper at @s unless entity $portalarrow[distance=..2,nbt=!{inGround:1b}] function mspack:items/portalgun/teleport
+
+as $portalarrow[nbt={inGround:1b}] kill @s

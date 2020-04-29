@@ -2,7 +2,6 @@ Textures:
 -Levitation arrow? (kinda a joke item)
 
 Fixes:
--Allow multiple people to place portals at same time
 
 Additions:
 -Healing item?
@@ -23,3 +22,4 @@ Done:
 -lightning arrow upgrade token
 -Wind gust texture
 -Wind gust upgrade token? (currently not ingame)
+-Allow multiple people to place portals at same time

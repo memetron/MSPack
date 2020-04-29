@@ -5,13 +5,13 @@ as @e[tag=portal_exit] run scoreboard players operation @s MS_storage1 -= @s MS_
 tag @e[tag=portal_exit,scores={MS_storage1 = 0}] add activeportal
 
 if entity @s[tag=groundedArrow] 
-    at @s positioned  ~ ~-1 ~ as @e[distance=..2,type=!minecraft:arrow,type=!minecraft:armor_stand,type=!minecraft:area_effect_cloud] 
+    at @e[tag=portalarrow,nbt={inGround:1b},sort=nearest,limit=1] as @e[distance=..2,type=!minecraft:arrow,type=!minecraft:armor_stand,type=!minecraft:area_effect_cloud] 
     run tp @s @e[tag=activeportal,limit=1]
 
 at @s unless entity @s[tag=groundedArrow] 
-    at @e[type =! minecraft:area_effect_cloud, sort=nearest, distance=..4, limit=1] as @e[distance=..2,type=!minecraft:arrow,type=!minecraft:armor_stand,type=!minecraft:area_effect_cloud]
+    at @e[type =! minecraft:area_effect_cloud, distance=..6, nbt={ActiveEffects:[{Id:4b,Amplifier:19b}]} , 
+    sort=nearest, limit=1] as @e[distance=..2,type=!minecraft:arrow,type=!minecraft:armor_stand,type=!minecraft:area_effect_cloud]
     run tp @s @e[tag=activeportal,limit=1]
-
 tag @e[tag=activeportal] remove activeportal
 
 kill @s

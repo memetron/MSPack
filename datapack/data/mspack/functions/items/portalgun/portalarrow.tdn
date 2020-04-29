@@ -19,7 +19,7 @@ define item portal_arrow minecraft:carrot_on_a_stick#4 {
     function shootportalarrow {
         #Summons arrow with undefined uuid at casters eyes
         anchored eyes positioned ^ ^ ^ anchored feet 
-            summon arrow ~ ~ ~ {damage:0.5d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,Tags:["portalarrow"],
+            summon arrow ~ ~ ~ {damage:0.5d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,Tags:["portalarrow"],CustomPotionEffects:[{Id:4b,Amplifier:19b,Duration:2}],
             Passengers:[{id:"minecraft:area_effect_cloud",Radius:0f,Duration:1200,WaitTime:1200,Tags:["portalhelper"]}]}
         
         tag @s add arrowcaster
