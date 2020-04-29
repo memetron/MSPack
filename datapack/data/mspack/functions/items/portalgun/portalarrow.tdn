@@ -10,10 +10,17 @@ define item portal_arrow minecraft:carrot_on_a_stick#4 {
     
     default nbt {Enchantments:[{id:"minecraft:sharpness",lvl:1s}],HideFlags:1}
     
+    function killmatchingidportals {
+        store result score @s MS_storage1 run data get storage mspack:storage portalID 1
+        scoreboard players operation @s MS_storage1 -= @s MS_id
+        kill @s[scores={MS_storage1=0}]
+    }
+    
     function shootportalarrow {
         #Summons arrow with undefined uuid at casters eyes
         anchored eyes positioned ^ ^ ^ anchored feet 
-            summon arrow ~ ~ ~ {damage:1d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,CustomPotionEffects:[{Id:4b,Amplifier:19b,Duration:2}]}
+            summon arrow ~ ~ ~ {damage:0.5d,OwnerUUIDLeast:0L,OwnerUUIDMost:0L,Tags:["portalarrow"],
+            Passengers:[{id:"minecraft:area_effect_cloud",Radius:0f,Duration:1200,WaitTime:1200,Tags:["portalhelper"]}]}
         
         tag @s add arrowcaster
         as @e[type=arrow,sort=nearest,limit=1] function mspack:items/portalgun/addarrowattributes
@@ -21,8 +28,11 @@ define item portal_arrow minecraft:carrot_on_a_stick#4 {
     }
     
     function placeexit {
-        kill @e[tag=portal_exit]
+        store result storage mspack:storage portalID byte 1 run scoreboard players get @s MS_id
+        as @e[tag=portal_exit] function ${this.killmatchingidportals}
+        
         summon minecraft:armor_stand ~ ~ ~ {NoGravity:1b,Invulnerable:1b,Invisible:1b,Tags:["portal_exit"]}
+        store result score @e[type=minecraft:armor_stand,tag=portal_exit,sort=nearest,limit=1] MS_id run scoreboard players get @p MS_id
     }
     
     on used function {

@@ -1,0 +1,17 @@
+particle dust 0.2 0.5 1 1 ~ ~ ~ 0.7 0.7 0.7 0 500 normal
+store result storage mspack:storage portalID byte 1 run scoreboard players get @s MS_id
+store result score @e[tag=portal_exit] MS_storage1 run data get storage mspack:storage portalID 1
+as @e[tag=portal_exit] run scoreboard players operation @s MS_storage1 -= @s MS_id
+tag @e[tag=portal_exit,scores={MS_storage1 = 0}] add activeportal
+
+if entity @s[tag=groundedArrow] 
+    at @s positioned  ~ ~-1 ~ as @e[distance=..2,type=!minecraft:arrow,type=!minecraft:armor_stand,type=!minecraft:area_effect_cloud] 
+    run tp @s @e[tag=activeportal,limit=1]
+
+at @s unless entity @s[tag=groundedArrow] 
+    at @e[type =! minecraft:area_effect_cloud, sort=nearest, distance=..4, limit=1] as @e[distance=..2,type=!minecraft:arrow,type=!minecraft:armor_stand,type=!minecraft:area_effect_cloud]
+    run tp @s @e[tag=activeportal,limit=1]
+
+tag @e[tag=activeportal] remove activeportal
+
+kill @s

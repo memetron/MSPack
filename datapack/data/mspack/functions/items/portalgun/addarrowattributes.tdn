@@ -2,9 +2,11 @@ tag @s add portalarrow
 function mspack:items/spectralarrow/translateuuid
 
 var caster = entity<@a[tag=arrowcaster,sort=nearest,limit=1]>
-
+var arrow = entity<@s>
+var helper = entity<@e[type=minecraft:area_effect_cloud,tag=portalhelper,limit=1]>
 as $caster function mspack:utilities/getplayerlook
 
+store result score $helper MS_id run scoreboard players get $caster MS_id
 store result entity @s Motion[0] double -0.02 run scoreboard players get $caster MS_vectorX
 store result entity @s Motion[1] double -0.02 run scoreboard players get $caster MS_vectorY
 store result entity @s Motion[2] double -0.02 run scoreboard players get $caster MS_vectorZ

@@ -1,0 +1,2 @@
+@tag mspack:ondamage
+advancement revoke @s only mspack:damagelistener

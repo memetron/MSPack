@@ -1,0 +1,10 @@
+{
+    "rewards": {
+      "function": "mspack:tags/run_ondamage_tags"
+    },
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:entity_hurt_player"
+      }
+    }
+  }

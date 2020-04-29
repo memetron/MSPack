@@ -1,14 +1,14 @@
 @tag tick
 
-var exit = entity<@e[tag=portal_exit,limit=1]>
+var exit = entity<@e[tag=portal_exit]>
 var portalarrow = entity<@e[type=arrow,tag=portalarrow]>
-
+var portalhelper = entity<@e[type=minecraft:area_effect_cloud,tag=portalhelper]>
 at $exit particle dust 1 0.5 0 1 ~ ~ ~ 1 0 1 0 100
-as @e[nbt={ActiveEffects:[{Id:4b,Amplifier:19b,Duration:1}]}] at @s expand {
-    playsound minecraft:entity.enderman.teleport neutral @a ~ ~ ~ 1 1 1
-    particle dust 0.2 0.5 1 1 ~ ~ ~ 0.7 0.7 0.7 0 500 normal
-    tp @s $exit
-}
 
 at $portalarrow particle dust 0.2 0.5 1 1 ~ ~ ~ 0.1 0.1 0.1 0 5 force
-kill $portalarrow[nbt={inGround:1b}]
+as $portalarrow[nbt={inGround:1b}] expand {
+    tag $portalhelper[sort=nearest,limit=1] add groundedArrow
+    kill @s
+}
+
+as $portalhelper at @s unless entity $portalarrow[distance=..2] function mspack:items/portalgun/teleport
